@@ -9,6 +9,8 @@ gem 'rails', '3.2.13'
 gem 'haml'
 gem 'haml-rails'
 gem 'twitter'
+gem 'resque', :require => "resque/server"
+gem 'rake'
 
 # gem 'twitter-stream'
 # Gems used only for assets and not required
@@ -24,8 +26,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-
+gem 'twitter-bootstrap-rails'
 
 group :development do
   gem 'sqlite3'
