@@ -1,4 +1,4 @@
-class BattleController < ApplicationController
+class BattlesController < ApplicationController
 
   def index
   end
@@ -40,6 +40,14 @@ class BattleController < ApplicationController
 
   def time
 
+  end
+
+  def present
+    @battle = Battle.where("id = ?", params[:battle_id])
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def end

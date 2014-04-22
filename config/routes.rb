@@ -8,10 +8,10 @@ HtBattle::Application.routes.draw do
   resources :hashtags
   #resources :hashtags
   resources :battles do
-    collection do
-      post 'start'
-      post 'end'
-    end
+    post 'start'
+    post 'end'
+
   end
 
+  get 'present.js' => "battles#present"
 end

@@ -49,9 +49,9 @@ function updateBattle() {
   var battle_id = $('#battle').attr('data-id');
   console.log(battle_id)
   $.ajaxSetup({ cache: true });
-  $.getScript('/hashtags.js?battle_id=' + battle_id, function(){},true);
-  $.ajaxSetup({ cache: true });
-  setTimeout(updateBattle, 5000);
+  $.getScript('/present.js?battle_id=' + battle_id, function(){},true);
+  $.ajaxSetup({ cache: false });
+  setTimeout(updateBattle, 3000);
 } 
 
 
