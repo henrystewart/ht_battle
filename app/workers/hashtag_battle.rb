@@ -5,11 +5,8 @@ module HashtagBattle
   @@counter = 1
 
   @queue = :battle_queue
-  @@lock = Mutex.new
-  #TODO: put topics as parameters
-  #TODO: battle as parameter?
-  #TODO: prevent nil from being passed
-  #TODO: find by battle id
+
+
   def self.perform(id, brand_1, brand_2)
     client = Twitter::Streaming::Client.new do |config|
       config.consumer_key        = "AJrghs2Q74I09aAUAoegK3t6G"
@@ -51,7 +48,10 @@ module HashtagBattle
       puts battle.brand_1_count
       battle.brand_2_count += brand_2_count
       battle.save!
-      retry
+      if battle.running == true
+        puts "true!"
+      end
+      retry if battle.running == true
     end
     puts ""
     puts "#{brand_1_name} count: #{brand_1_count}"

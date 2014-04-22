@@ -1,10 +1,7 @@
 %h1
   Running Battles!
 
-/ %div#battle{ :data => {:id => @battle.id }}
-/   = @battle.brand_1_count
 
-/ %div#battle{ :data => {:id => @battle.id }}
 = render :partial => "present", locals: {:battle => @battle}
 
 = button_to "End Counting", battle_end_path(@battle.id), :class => "btn btn-danger"

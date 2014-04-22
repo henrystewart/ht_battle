@@ -18,13 +18,12 @@ class BattlesController < ApplicationController
     
     # save everyone
     @battle.save!
-    # current_user.save!
-    
 
+    # Add to Resque queue
     Resque.enqueue(HashtagBattle, @battle.id, params[:battle][:brand_1_hashtag], params[:battle][:brand_2_hashtag])
-    #puts "params!!!"
-    #puts params[:battle]
-    # redirect to home
+
+
+    # redirect to battle, "show" battle
     redirect_to battle_path(@battle.id)
     
   end
@@ -52,23 +51,18 @@ class BattlesController < ApplicationController
   end
 
   def end
-    # current user object set to nil
-    #current_user.running_battle_id = nil
-
-    # dequue everything from resque
-    # Resque.dequeue( process... )
-
     # tell db object is not running
-    @battle = Battle.find_by_id(1)
-    @battle.running = false
+
+    battle = Battle.find_by_id(params[:battle_id])
+    battle.running = false
      
+    # dequue everything from resque
     Resque.queues.each do |q|
       Resque.redis.del "queue:#{q}"
     end
 
     # do not destroy battle, just save
-    @battle.save!
-    #current_user.save!
+    battle.save!
 
     # redir to home
     redirect_to :root
