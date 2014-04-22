@@ -39,8 +39,8 @@
 // }
 
 $(function () {  
-  if ($('#battle')) {  
-  setTimeout(updateBattle, 10000);  
+  if ($('#battle').length > 0) {  
+    setTimeout(updateBattle, 10000);  
   }  
 });  
   

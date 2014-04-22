@@ -10,7 +10,6 @@ HtBattle::Application.routes.draw do
   resources :battles do
     post 'start'
     post 'end'
-
   end
 
   get 'present.js' => "battles#present"
