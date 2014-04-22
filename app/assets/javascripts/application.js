@@ -39,9 +39,9 @@
 // }
 
 $(function () {  
-  // if ($('#battle')) {  
+  if ($('#battle')) {  
   setTimeout(updateBattle, 10000);  
-  // }  
+  }  
 });  
   
 function updateBattle() {  
@@ -51,6 +51,7 @@ function updateBattle() {
   $.ajaxSetup({ cache: true });
   $.getScript('/present.js?battle_id=' + battle_id, function(){},true);
   $.ajaxSetup({ cache: false });
+  location.reload()
   setTimeout(updateBattle, 3000);
 } 
 

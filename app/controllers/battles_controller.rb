@@ -21,11 +21,11 @@ class BattlesController < ApplicationController
     # current_user.save!
     
 
-    Resque.enqueue(HashtagBattle, 1, params[:battle][:brand_1_hashtag], params[:battle][:brand_2_hashtag])
+    Resque.enqueue(HashtagBattle, @battle.id, params[:battle][:brand_1_hashtag], params[:battle][:brand_2_hashtag])
     #puts "params!!!"
     #puts params[:battle]
     # redirect to home
-    redirect_to :root
+    redirect_to battle_path(@battle.id)
     
   end
 
@@ -48,6 +48,7 @@ class BattlesController < ApplicationController
     respond_to do |format|
       format.js
     end
+    # redirect_to battle_path(@battle.id)
   end
 
   def end

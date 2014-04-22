@@ -4,7 +4,7 @@ HtBattle::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  root :to => 'battle#index'
+  root :to => 'battles#index'
   resources :hashtags
   #resources :hashtags
   resources :battles do

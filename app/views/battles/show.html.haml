@@ -1,26 +1,10 @@
 %h1
   Running Battles!
 
-%div#battle{ :data => {:id => @battle.id }}
-  = @battle.brand_1_count
+/ %div#battle{ :data => {:id => @battle.id }}
+/   = @battle.brand_1_count
 
-%div#hashtags
-  = render :partial => "present", locals: {:battle => @battle}
-  /= render :partial => 'hashtags/hashtag', locals: {battle: @battle}
-/%div.stat{ :data => {:id => @battle.id}}
+/ %div#battle{ :data => {:id => @battle.id }}
+= render :partial => "present", locals: {:battle => @battle}
 
-
-/= simple_format @hashtags.brand_2_count
-/ :javascript
-/   //$('#battle').append("#{ escape_javascript(raw render(@battle))}");
-/   / $(function () {  
-/   /   $('#battle').append("#{ escape_javascript(raw render(@battle)) }");
-/   / }
-
-
-/   / function poll() {
-/   /   lasted_count = $('div#battle').data('id')
-/   /   $.getScript('/update_counts?battle_id=' + battle_id)
-/   / }
-
-/   / $(function(){setTimeout(poll,5000)})
+= button_to "End Counting", battle_end_path(@battle.id), :class => "btn btn-danger"

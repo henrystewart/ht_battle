@@ -30,7 +30,7 @@ module HashtagBattle
 
 
     begin 
-      Timeout::timeout(20) do #TODO get rid of this & change to "running" or other boolean
+      Timeout::timeout(3) do #TODO get rid of this & change to "running" or other boolean
         client.filter(:track => topics.join(',')) do |object|
           # puts object.text if object.is_a?(Twitter::Tweet)
           puts object.text if object.is_a?(Twitter::Tweet) && object.text.include?(brand_1_name) || object.text.include?(brand_2_name)
@@ -51,6 +51,7 @@ module HashtagBattle
       puts battle.brand_1_count
       battle.brand_2_count += brand_2_count
       battle.save!
+      retry
     end
     puts ""
     puts "#{brand_1_name} count: #{brand_1_count}"
