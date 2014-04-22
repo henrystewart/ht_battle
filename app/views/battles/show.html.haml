@@ -5,7 +5,7 @@
   = @battle.brand_1_count
 
 %div#hashtags
-  /= render :partial => "present"
+  = render :partial => "present", locals: {:battle => @battle}
   /= render :partial => 'hashtags/hashtag', locals: {battle: @battle}
 /%div.stat{ :data => {:id => @battle.id}}
 
