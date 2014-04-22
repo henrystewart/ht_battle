@@ -1,3 +1,4 @@
 
 jQuery ->
-  alert battlesUrl
+  #alert @battle
+

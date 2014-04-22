@@ -11,6 +11,7 @@ gem 'haml-rails'
 gem 'twitter'
 gem 'resque', :require => "resque/server"
 gem 'rake'
+gem 'devise'
 
 # gem 'twitter-stream'
 # Gems used only for assets and not required

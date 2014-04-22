@@ -1,0 +1,9 @@
+%h1
+  Create a New Battle
+
+= form_for :battle, :url => battle_index_path do |f|
+  = f.label :brand_1_hashtag
+  = f.text_field :brand_1_hashtag
+  = f.label :brand_2_hashtag
+  = f.text_field :brand_2_hashtag
+  = f.submit "Begin Battle", :class => "btn btn-primary"

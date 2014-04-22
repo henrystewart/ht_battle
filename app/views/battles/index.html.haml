@@ -1,0 +1,20 @@
+%h1
+  Hash Tag Battle
+
+= form_for :battle, :url => battle_index_path do |f|
+  = f.label :brand_1_hashtag
+  = f.text_field :brand_1_hashtag
+  = f.label :brand_2_hashtag
+  = f.text_field :brand_2_hashtag
+  = f.submit "Begin Battle", :class => "btn btn-primary"
+
+
+/ = link_to "Start Counting" , :controller => :battle_controller, :action => :start, :class => "btn btn-primary"
+%br
+= button_to "End Counting", {action: "end"}, :class => "btn btn-danger"
+/ %br
+/ = @count
+
+
+%h3
+  Reference
