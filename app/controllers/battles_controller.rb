@@ -9,17 +9,11 @@ class BattlesController < ApplicationController
     @battle.running = true
 
     puts params[:battle]
-    # current user object is this new object
-    # current_user.running_battle_id = @battle
-    
-    # enqueue
-    # Resque.enqueue(HashtagBattle,1)
-    
-    
+
     # save everyone
     @battle.save!
 
-    # Add to Resque queue
+    # Enqueue to Resque
     Resque.enqueue(HashtagBattle, @battle.id, params[:battle][:brand_1_hashtag], params[:battle][:brand_2_hashtag])
 
 
@@ -29,16 +23,13 @@ class BattlesController < ApplicationController
   end
 
   def show
-    #@battle = Battle.where("battle_id = ?", params[:battle_id])
     @battle = Battle.find(params[:id])
-
   end
 
   def new
   end
 
   def time
-
   end
 
   def present
@@ -55,14 +46,15 @@ class BattlesController < ApplicationController
 
     battle = Battle.find_by_id(params[:battle_id])
     battle.running = false
-     
-    # dequue everything from resque
+
+    Battle.transaction do
+      battle.save!
+    end
+
+    # dequeue everything from resque
     Resque.queues.each do |q|
       Resque.redis.del "queue:#{q}"
     end
-
-    # do not destroy battle, just save
-    battle.save!
 
     # redir to home
     redirect_to :root
